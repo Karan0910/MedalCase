@@ -81,7 +81,7 @@ internal class HeaderViewHolder(private  val binding: ItemHeaderBinding) :
     BaseViewHolder<Header>(binding.root) {
     override fun bind(item: Header) {
         binding.recordTypeText.text = item.name
-        binding.recordCount.text = item.count.toString()
+        binding.recordCount.text = "${ item.completedCount } of "+ item.totalCount
     }
 }
 
