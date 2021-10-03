@@ -1,10 +1,10 @@
 package com.medalcase.ui.activity
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.GridLayoutManager
 import com.medalcase.R
 import com.medalcase.databinding.ActivityMainBinding
 import com.medalcase.ui.adapter.RecordsAdapter
@@ -14,12 +14,15 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
 
-    private val viewModel =
-        ViewModelProvider(this, defaultViewModelProviderFactory).get(RecordsViewModel::class.java)
+    private lateinit var viewModel: RecordsViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        viewModel = ViewModelProvider(
+            this,
+            defaultViewModelProviderFactory
+        ).get(RecordsViewModel::class.java)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         binding.lifecycleOwner = this
         binding.recordsViewModel = viewModel
@@ -28,10 +31,20 @@ class MainActivity : AppCompatActivity() {
 
         val recordsAdapter = RecordsAdapter()
 
-        binding.recordsRecyclerView.apply {
-            layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
-            adapter = recordsAdapter
+        val manager = GridLayoutManager(baseContext, 2)
+        manager.spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
+            override fun getSpanSize(position: Int) =
+                when (recordsAdapter.getItemViewType(position)) {
+                    0 -> 2
+                    else -> 1
+                }
         }
+
+        binding.recordsRecyclerView.apply {
+            adapter = recordsAdapter
+            layoutManager = manager
+        }
+        recordsAdapter.submitList(viewModel.recordsLiveData.value)
 
     }
 }
