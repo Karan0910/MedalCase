@@ -51,10 +51,9 @@ class MainActivity : AppCompatActivity() {
 
         binding.recordsRecyclerView.apply {
             adapter = recordsAdapter
-            layoutManager = manager/**/
+            layoutManager = manager
         }
         recordsAdapter.submitList(viewModel.recordsLiveData.value)
-
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

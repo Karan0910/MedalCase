@@ -1,6 +1,7 @@
 package com.medalcase.model
 
 import com.medalcase.R
+import java.util.*
 
 sealed class RecordCollection {
     abstract val id: Long
@@ -24,57 +25,32 @@ data class Header(
 ) : RecordCollection()
 
 private val personalRecordsList = listOf(
-    Medal(1, "Longest Run", "00:00", R.drawable.ic_virtual_half_marathon_race, true),
-    Medal(1, "Highest Elevation", "00:00", R.drawable.ic_highest_elevation, true),
-    Medal(1, "Fastest 5K", "00:00", R.drawable.ic_fastest_5k, true),
-    Medal(1, "10K", "00:00", R.drawable.ic_fastest_10k, true),
-    Medal(1, "Half Marathon", "00:00:00", R.drawable.ic_fastest_half_marathon, false),
-    Medal(1, "Marathon", "00:00", R.drawable.ic_fastest_marathon, false)
+    Medal(1, "Longest Run", "00:00", R.drawable.ic_longest_run, true),
+    Medal(2, "Highest Elevation", "00:00", R.drawable.ic_highest_elevation, true),
+    Medal(3, "Fastest 5K", "00:00", R.drawable.ic_fastest_5k, true),
+    Medal(4, "10K", "00:00", R.drawable.ic_fastest_10k, true),
+    Medal(5, "Half Marathon", "00:00:00", R.drawable.ic_fastest_half_marathon, true),
+    Medal(6, "Marathon", "00:00", R.drawable.ic_fastest_marathon, false)
 )
 
-private val vertualRacesList = listOf(
-    Medal(1, "Virtual Half Marathon Race", "00:00", R.drawable.ic_longest_run, true),
-    Medal(1, "Tokyo-Hakone Ekiden 2020", "00:00:00", R.drawable.ic_highest_elevation, true),
-    Medal(1, "Virtual 10K Race", "00:00:00", R.drawable.ic_fastest_5k, true),
-    Medal(1, "Hakone Ekiden", "00:00", R.drawable.ic_fastest_10k, true),
+private val virtualRacesList = listOf(
+    Medal(7, "Virtual Half Marathon Race", "00:00", R.drawable.ic_virtual_half_marathon_race, true),
+    Medal(8, "Tokyo-Hakone Ekiden 2020", "00:00:00", R.drawable.ic_tokyo_kakone_ekiden, true),
+    Medal(9, "Virtual 10K Race", "00:00:00", R.drawable.ic_virtual_10k_race, true),
+    Medal(10, "Hakone Ekiden", "00:00", R.drawable.ic_hakone_ekiden, true),
     Medal(
-        1,
+        11,
         "Mizuno Singapore Ekiden 2015",
         "00:00:00",
-        R.drawable.ic_fastest_half_marathon,
-        false
+        R.drawable.ic_mizuno_singapore_ekiden,
+        true
     ),
-    Medal(1, "Virtual 5K Race", "23:07", R.drawable.ic_fastest_marathon, true)
+    Medal(12, "Virtual 5K Race", "23:07", R.drawable.ic_virtual_5k_race, true)
 )
 
-private val recordCollection = hashMapOf<Header, List<Medal>>(
-    Header(1, "Personal records") to personalRecordsList,
-    Header(1, "Virtual Races") to vertualRacesList
-)
-private val recordList = listOf(
-    Header(1, "Personal records", 4),
-    Medal(1, "Longest Run", "00:00", R.drawable.ic_virtual_half_marathon_race, true),
-    Medal(1, "Highest Elevation", "00:00", R.drawable.ic_highest_elevation, true),
-    Medal(1, "Fastest 5K", "00:00", R.drawable.ic_fastest_5k, true),
-    Medal(1, "10K", "00:00", R.drawable.ic_fastest_10k, true),
-    Medal(1, "Half Marathon", "00:00:00", R.drawable.ic_fastest_half_marathon, true),
-    Medal(1, "Marathon", "00:00", R.drawable.ic_fastest_marathon, false),
-    Header(
-        1, "Virtual Races", 4
-    ),
-    Medal(1, "Virtual Half Marathon Race", "00:00", R.drawable.ic_longest_run, true),
-    Medal(1, "Tokyo-Hakone Ekiden 2020", "00:00:00", R.drawable.ic_highest_elevation, true),
-    Medal(1, "Virtual 10K Race", "00:00:00", R.drawable.ic_fastest_5k, true),
-    Medal(1, "Hakone Ekiden", "00:00", R.drawable.ic_fastest_10k, true),
-    Medal(
-        1,
-        "Mizuno Singapore Ekiden 2015",
-        "00:00:00",
-        R.drawable.ic_fastest_half_marathon,
-        false
-    ),
-    Medal(1, "Virtual 5K Race", "23:07", R.drawable.ic_fastest_marathon, true)
-
+private val recordCollection = hashMapOf(
+    Header(0, "Personal records") to personalRecordsList,
+    Header(1, "Virtual Races") to virtualRacesList
 )
 
 object RecordsRepo {
