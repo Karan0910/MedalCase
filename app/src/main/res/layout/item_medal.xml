@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="150dp"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/margin_s"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ImageView
+        android:id="@+id/record_image"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintStart_toStartOf="parent"
+        android:src="@drawable/ic_fastest_5k"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <TextView
+        android:id="@+id/record_title_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Virtual Half Marathon Race"
+        android:lines="2"
+        android:gravity="center_horizontal"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:textSize="@dimen/text_s"
+        app:layout_constraintTop_toBottomOf="@id/record_image"
+        app:layout_constraintStart_toStartOf="@id/record_image"
+        app:layout_constraintEnd_toEndOf="@id/record_image"
+        />
+
+    <TextView
+        android:id="@+id/record_time_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="00:00"
+        android:textSize="@dimen/text_s"
+        app:layout_constraintTop_toBottomOf="@id/record_title_text"
+        app:layout_constraintStart_toStartOf="@id/record_image"
+        app:layout_constraintEnd_toEndOf="@id/record_image"
+        />
+
+    <View
+        android:id="@+id/record_disabled"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/disabled_view"
+        android:visibility="gone"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
