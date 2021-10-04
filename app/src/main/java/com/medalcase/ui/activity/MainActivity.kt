@@ -2,7 +2,7 @@ package com.medalcase.ui.activity
 
 import android.os.Bundle
 import android.view.Menu
-import android.view.MenuItem
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
@@ -35,7 +35,16 @@ class MainActivity : AppCompatActivity() {
         binding.lifecycleOwner = this
         binding.recordsViewModel = viewModel
 
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        val toolbar = binding.toolbar
+
+        setSupportActionBar(toolbar)
+        binding.toolbarTitle.text = getString(R.string.toolbar_title)
+
+
+        supportActionBar!!.setDisplayShowTitleEnabled(false)
+        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+        supportActionBar!!.setHomeAsUpIndicator(R.drawable.ic_arrow_back)
+
     }
 
     private fun setRecyclerView() {
