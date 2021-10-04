@@ -54,7 +54,7 @@ class RecordsAdapter :
                         parent,
                         false
                     )
-                MedalViewHolder(binding,parent.context)
+                MedalViewHolder(binding, parent.context)
             }
             else -> throw ClassCastException("Unknown viewType $viewType")
         }
@@ -62,10 +62,10 @@ class RecordsAdapter :
 
     override fun onBindViewHolder(holder: BaseViewHolder<*>, position: Int) {
         val item = getItem(position)
-           when(holder) {
-               is HeaderViewHolder ->  holder.bind(item as Header)
-               is MedalViewHolder ->  holder.bind(item as Medal)
-           }
+        when (holder) {
+            is HeaderViewHolder -> holder.bind(item as Header)
+            is MedalViewHolder -> holder.bind(item as Medal)
+        }
     }
 
     override fun getItemViewType(position: Int): Int {
@@ -77,24 +77,24 @@ class RecordsAdapter :
 
 }
 
-internal class HeaderViewHolder(private  val binding: ItemHeaderBinding) :
+internal class HeaderViewHolder(private val binding: ItemHeaderBinding) :
     BaseViewHolder<Header>(binding.root) {
     override fun bind(item: Header) {
         binding.recordTypeText.text = item.name
-        binding.recordCount.text = "${ item.completedCount } of "+ item.totalCount
+        binding.recordCount.text = "${item.completedCount} of " + item.totalCount
     }
 }
 
-internal class MedalViewHolder(val binding: ItemMedalBinding,val context: Context) :
+internal class MedalViewHolder(val binding: ItemMedalBinding, val context: Context) :
     BaseViewHolder<Medal>(binding.root) {
     override fun bind(item: Medal) {
-        binding.recordTitleText.text =  item.name
+        binding.recordTitleText.text = item.name
         binding.recordTimeText.text = item.recordValue
-        val isVisible = when(item.isCompleted) {
+        val isVisible = when (item.isCompleted) {
             true -> View.INVISIBLE
             false -> View.VISIBLE
         }
-        binding.recordDisabled.visibility =  isVisible
+        binding.recordDisabled.visibility = isVisible
         binding.recordImage.setImageDrawable(context.getDrawable(item.imageUrl))
     }
 
